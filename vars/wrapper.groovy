@@ -1,16 +1,9 @@
-def call(body) {
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-    body()
-    
+def call(config, body) {
     def start = System.currentTimeMillis();
     def e = null
     try {
         stage(config.name) {
-            node('master') {
-                sh "${config.shellScript}"
-            }
+            body()
         }
     } catch (Exception ex) {
         e = ex
