@@ -11,7 +11,7 @@ def callFunc(name, closure) {
         if (e != null) {
             echo "${name} failed!"
         }
-        def response = httpRequest [url: 'http://google.com', timeout: 2000]
+        def response = httpRequest(url: 'http://google.com', timeout: 2000)
     }
 }
 
