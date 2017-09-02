@@ -16,7 +16,7 @@ def callFunc(name, closure) {
         }
         def stageMap = [jobName: env.JOB_NAME, jobNumber: env.BUILD_NUMBER,
                         elapsedTime:${end - start}, success: (e == null)]
-        def response = httpRequest(url: 'http://elasticsearch-sonar-scan.192.168.0.118.nip.io', httpMode: 'POST',
+        def response = httpRequest(url: 'http://elasticsearch-sonar-scan.192.168.0.118.nip.io/jenkinsstages/stage', httpMode: 'POST',
                                    requestBody: "${groovy.json.JsonOutput.toJson(stageMap)}")
         println("Elasticsearch content: "+response.content)
     }
