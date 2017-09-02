@@ -9,7 +9,7 @@ def callFunc(name, closure) {
         def end = System.currentTimeMillis()
         println "${name} took ${end - start} millis"
         if (e != null) {
-            println "${name} failed!"
+            echo "${name} failed!"
         }
     }
 }
