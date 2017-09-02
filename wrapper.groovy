@@ -13,3 +13,5 @@ def callFunc(name, closure) {
         }
     }
 }
+
+return this
