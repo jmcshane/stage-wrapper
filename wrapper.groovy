@@ -5,6 +5,7 @@ def callFunc(name, closure) {
         closure()
     } catch (Exception ex) {
         e = ex
+        throw ex
     }finally {
         def end = System.currentTimeMillis()
         println "${name} took ${end - start} millis"
