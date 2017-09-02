@@ -8,7 +8,9 @@ def call(body) {
     def e = null
     try {
         stage(config.name) {
-            sh "${config.shellScript}"
+            node('master') {
+                sh "${config.shellScript}"
+            }
         }
     } catch (Exception ex) {
         e = ex
