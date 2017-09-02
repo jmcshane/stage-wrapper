@@ -1,18 +1,23 @@
-def callFunc(name, closure) {
+def call(body) {
+    def config = [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = config
+    body()
+    
     def start = System.currentTimeMillis();
     def e = null
     try {
-        stage(name) {
-            closure()
+        stage(config.name) {
+            sh "${config.shellScript}"
         }
     } catch (Exception ex) {
         e = ex
         throw ex
     }finally {
         def end = System.currentTimeMillis()
-        println "${name} took ${end - start} millis"
+        println "${config.name} took ${end - start} millis"
         if (e != null) {
-            echo "${name} failed!"
+            echo "${config.name} failed!"
         }
         def elapsed = end - start
         def stageMap = [jobName: env.JOB_NAME, jobNumber: env.BUILD_NUMBER,
@@ -22,5 +27,3 @@ def callFunc(name, closure) {
         println("Elasticsearch content: "+response.content)
     }
 }
-
-return this
