@@ -1,0 +1,27 @@
+apply plugin:'groovy'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+  	main {
+    	java { srcDirs = [] }
+    	groovy { srcDir 'vars' }
+  	}
+  	test {
+    	java { srcDirs = [] }
+    	groovy { srcDir 'test' }
+  	}
+}
+
+task wrapper(type:Wrapper) {
+    gradleVersion = '4.1'
+}
+
+def groovyVersion = '2.4.12'
+
+dependencies {
+  	compile "org.codehaus.groovy:groovy:$groovyVersion"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+}
