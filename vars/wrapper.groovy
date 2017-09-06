@@ -1,5 +1,5 @@
 def call(config, body) {
-    def start = System.currentTimeMillis();
+    def start = System.currentTimeMillis()
     def e = null
     try {
         stage(config.name) {
@@ -22,3 +22,5 @@ def call(config, body) {
         println("Elasticsearch content: "+response.content)
     }
 }
+
+return this
